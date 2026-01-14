@@ -1,7 +1,7 @@
 #14 Longest Common Prefix
 #Difficulty - Easy
 #Topic - Array and String
-#Time Complexity - O(n)
+#Time Complexity - O(nk)
 #Space Complexity - O(1)
 
 class Solution:
