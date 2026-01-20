@@ -1,0 +1,29 @@
+#44 Wildcard Matching
+#Difficulty - Hard
+#Topics = Array Greedy Dp String
+#Time Complexity - O(mn)
+#Space Complexity - O(mn)
+
+class Solution:
+    def isMatch(self, s: str, p: str) -> bool:
+        m=len(s)
+        n=len(p)
+        dp=[[False]*(n+1) for _ in range(m+1)]
+        dp[0][0]=True
+
+        for j in range(1,n+1):
+            if p[j-1] == '*':
+                dp[0][j]=dp[0][j-1]
+
+        for i in range(1,m+1):
+            for j in range(1,n+1):
+                if p[j-1]=='*':
+                    dp[i][j] = dp[i][j-1] or dp[i-1][j]
+                elif p[j-1]==s[i-1] or p[j-1]=='?':
+                    dp[i][j] = dp[i-1][j-1]
+
+        return dp[m][n]
+    
+#example usage
+sol = Solution()
+print(sol.isMatch("adceb", "*a*b"))  # Output: True
